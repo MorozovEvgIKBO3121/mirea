@@ -1,0 +1,42 @@
+package lab12.MergeSort;
+
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public class Test {
+    public static void main(String[] args) {
+        Student student1 = new Student("Vasiliy", 4);
+        Student student2 = new Student("Ilya", 3);
+        Student student3 = new Student("Ivan", 6);
+
+        Student student4 = new Student("Nikolay", 1);
+        Student student5 = new Student("Sergey", 7);
+        Student student6 = new Student("Mariya", 2);
+
+
+        int[] point1 = new int[]{student1.getPoints(), student2.getPoints(), student3.getPoints()};
+        int[] point2 = new int[]{student4.getPoints(), student5.getPoints(), student6.getPoints()};
+        int[] arrayC = new int[point1.length + point2.length];
+        int positionA = 0, positionB = 0;
+
+        for (int i = 0; i < arrayC.length; i++) {
+            if (positionA == point1.length) {
+                arrayC[i] = point2[i - positionB];
+                positionB++;
+            } else if (positionB == point2.length) {
+                arrayC[i] = point1[i - positionA];
+                positionA++;
+            } else if (point1[i - positionA] < point2[i - positionB]) {
+                arrayC[i] = point1[i - positionA];
+                positionB++;
+            } else {
+                arrayC[i] = point2[i - positionB];
+                positionA++;
+            }
+
+        }
+        System.out.println(Arrays.toString(arrayC));
+    }
+}
+
